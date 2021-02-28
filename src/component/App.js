@@ -14,9 +14,12 @@ function App() {
 
   const onAddContact = contact => {
     //Провекра, есть ли такие же имена
-    if (!contacts.filter(e => e.name === contact.name).length > 0)
+    if (!contacts.filter(e => e.name === contact.name).length > 0) {
       setContacts([...contacts, contact]);
-    else alert(`${contact.name} is already in contacts`);
+      return true;
+    }
+    alert(`${contact.name} is already in contacts`);
+    return false;
   };
 
   const normalizedFilter = filter.toLowerCase();
@@ -28,6 +31,11 @@ function App() {
     setFilter(event.currentTarget.value);
   };
 
+  const onDelete = id => {
+    const newContacts = contacts.filter(contact => contact.id !== id);
+    setContacts(newContacts);
+  };
+
   return (
     <div>
       <h1>Phonebook</h1>
@@ -35,7 +43,7 @@ function App() {
 
       <h2>Contacts</h2>
       <Filter onFilter={onSetFilter} />
-      <ContactList phoneList={filterList} />
+      <ContactList phoneList={filterList} onDelete={onDelete} />
     </div>
   );
 }
