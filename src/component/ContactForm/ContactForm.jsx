@@ -1,8 +1,13 @@
 const ContactForm = ({ onAddContact }) => {
   const handleSubmit = event => {
     event.preventDefault();
+    //рандомный id
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     if (event.target.name.value === '') return;
     onAddContact({
+      id:
+        new Date() +
+        possible.charAt(Math.floor(Math.random() * possible.length)),
       name: event.target.name.value,
       number: event.target.number.value,
     });

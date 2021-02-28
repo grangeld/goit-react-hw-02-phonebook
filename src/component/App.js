@@ -13,11 +13,10 @@ function App() {
   const [filter, setFilter] = useState('');
 
   const onAddContact = contact => {
-    //рандомный id
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    contact['id'] =
-      new Date() + possible.charAt(Math.floor(Math.random() * possible.length));
-    setContacts([...contacts, contact]);
+    //Провекра, есть ли такие же имена
+    if (!contacts.filter(e => e.name === contact.name).length > 0)
+      setContacts([...contacts, contact]);
+    else alert(`${contact.name} is already in contacts`);
   };
 
   const normalizedFilter = filter.toLowerCase();
