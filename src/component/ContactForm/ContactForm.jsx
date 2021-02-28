@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import s from './contactForm.module.css';
 
 const ContactForm = ({ onAddContact }) => {
   const handleSubmit = event => {
@@ -23,18 +24,18 @@ const ContactForm = ({ onAddContact }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form onSubmit={handleSubmit} className={s.decor}>
+      <label className={s.label}>
         Name
         <input type="text" name="name" required />
       </label>
 
-      <label htmlFor="phone">
+      <label className={s.label}>
         Number
-        <input type="text" id="phone" name="number" required />
+        <input type="text" name="number" required />
       </label>
 
-      <input type="submit" value="Add contact" />
+      <input type="submit" value="Add contact" className={s.buttonSubmit} />
     </form>
   );
 };

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
+import s from './app.module.css';
 
 function App() {
   const [contacts, setContacts] = useState([
@@ -38,7 +39,7 @@ function App() {
 
   return (
     <div>
-      <h1>Phonebook</h1>
+      <h1 className={s.heading}>Phonebook</h1>
       <ContactForm onAddContact={onAddContact} />
 
       <h2>Contacts</h2>
