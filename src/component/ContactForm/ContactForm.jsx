@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import s from './contactForm.module.css';
+import React, { useState } from 'react';
 
 const ContactForm = ({ onAddContact }) => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
   const handleSubmit = event => {
     event.preventDefault();
     //рандомный id
@@ -10,16 +14,16 @@ const ContactForm = ({ onAddContact }) => {
     const id =
       +new Date() +
       possible.charAt(Math.floor(Math.random() * possible.length));
-    if (event.target.name.value === '') return;
+    if (name === '' || number === '') return;
     if (
       onAddContact({
         id,
-        name: event.target.name.value,
-        number: event.target.number.value,
+        name,
+        number,
       })
     ) {
-      event.target.name.value = '';
-      event.target.number.value = '';
+      setName('');
+      setNumber('');
     }
   };
 
@@ -27,12 +31,24 @@ const ContactForm = ({ onAddContact }) => {
     <form onSubmit={handleSubmit} className={s.decor}>
       <label className={s.label}>
         Name
-        <input type="text" name="name" required />
+        <input
+          type="text"
+          name="name"
+          onChange={e => setName(e.target.value)}
+          value={name}
+          required
+        />
       </label>
 
       <label className={s.label}>
         Number
-        <input type="text" name="number" required />
+        <input
+          type="text"
+          name="number"
+          value={number}
+          onChange={e => setNumber(e.target.value)}
+          required
+        />
       </label>
 
       <input type="submit" value="Add contact" className={s.buttonSubmit} />

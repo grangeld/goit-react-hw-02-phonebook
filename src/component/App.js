@@ -28,9 +28,9 @@ function App() {
     return name.toLowerCase().includes(normalizedFilter);
   });
 
-  const onSetFilter = event => {
-    setFilter(event.currentTarget.value);
-  };
+  // const onSetFilter = value => {
+  //   setFilter(value);
+  // };
 
   const onDelete = id => {
     const newContacts = contacts.filter(contact => contact.id !== id);
@@ -43,7 +43,7 @@ function App() {
       <ContactForm onAddContact={onAddContact} />
 
       <h2>Contacts</h2>
-      <Filter onFilter={onSetFilter} />
+      <Filter onFilter={setFilter} search={filter} />
       <ContactList phoneList={filterList} onDelete={onDelete} />
     </div>
   );
