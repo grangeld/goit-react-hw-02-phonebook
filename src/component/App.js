@@ -28,10 +28,6 @@ function App() {
     return name.toLowerCase().includes(normalizedFilter);
   });
 
-  // const onSetFilter = value => {
-  //   setFilter(value);
-  // };
-
   const onDelete = id => {
     const newContacts = contacts.filter(contact => contact.id !== id);
     setContacts(newContacts);
